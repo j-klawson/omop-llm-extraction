@@ -1,0 +1,11 @@
+# prompts/examples.json
+[
+  {
+    "prompt": "You are a clinical data extractor. Convert the following note into OMOP CDM:\n'Patient was admitted for chest pain and diagnosed with myocardial infarction. Started aspirin 81mg daily.'",
+    "completion": "{\"condition_occurrence\":[{\"condition_concept_name\":\"Myocardial infarction\"}],\"drug_exposure\":[{\"drug_name\":\"Aspirin\",\"dose\":\"81mg\"}],\"observation\":[],\"person\":[]}" 
+  },
+  {
+    "prompt": "Convert the following clinical note to OMOP JSON:\n'Subjective: Patient reports fatigue. Assessment: Suspected anemia. Plan: CBC test ordered.'",
+    "completion": "{\"condition_occurrence\":[{\"condition_concept_name\":\"Fatigue\"},{\"condition_concept_name\":\"Anemia\"}],\"observation\":[{\"observation_concept_name\":\"CBC test ordered\"}],\"drug_exposure\":[],\"person\":[]}" 
+  }
+]
