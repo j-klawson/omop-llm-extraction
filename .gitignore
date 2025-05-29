@@ -1,10 +1,13 @@
+# Project IO data
+data/processed/
+outputs/
+synthea/
+
 # Python bytecode
 __pycache__/
 *.py[cod]
 *.pyo
 
-data/processed/
-outputs/
 
 # Environment files
 .env
