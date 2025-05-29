@@ -4,3 +4,7 @@ scikit-learn
 openai
 transformers
 langchain
+transformers
+accelerate
+bitsandbytes
+xformers
