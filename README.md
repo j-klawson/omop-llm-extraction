@@ -14,7 +14,7 @@ This repository contains a modular pipeline to extract structured data from unst
 └── README.md            # This file
 ```
 
-## Getting Started
+## Setup
 1. Clone the repo:
 ```bash
 git clone https://github.com/j-klawson/omop-llm-extraction 
@@ -28,34 +28,34 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-3. Preprocess clinical notes:
-```bash
-python src/preprocess.py
-```
-
-4. Run the model on preprocessed notes:
-```bash
-python src/run_model.py
-```
-
-5. Evaluate the model (optional):
-```bash
-python src/evaluate.py
-```
-
-6. Load extracted data into OMOP:
-```bash
-python src/load_to_omop.py
-```
-
-## Data Format
-
-### Generate a Synthea Test Set 
+3. Generate a Synthea Test Set 
 
 ```
 ./scripts/setup_synthia.sh
 python src/generate_synthia_test_set.py
 ```
+
+4. Preprocess clinical notes:
+```bash
+python src/preprocess.py
+```
+
+5. Run the model on preprocessed notes:
+```bash
+python src/run_model.py
+```
+
+6. Evaluate the model (optional):
+```bash
+python src/evaluate.py
+```
+
+7. Load extracted data into OMOP:
+```bash
+python src/load_to_omop.py
+```
+
+## Data Format
 
 ### Input (raw notes)
 Plain `.txt` files under `data/raw_notes/`
