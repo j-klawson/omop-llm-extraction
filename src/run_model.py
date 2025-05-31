@@ -15,19 +15,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 import json
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig, pipeline
 
-MODEL_ID = "mistralai/Mistral-7B-Instruct"
+MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.2"
+
+# Configure quantization for efficient inference
+quant_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_use_double_quant=True,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_compute_dtype=torch.float16
+)
 
 print("Loading model... This may take a few minutes the first time.")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_ID,
     device_map="auto",
-    load_in_4bit=True,
+    quantization_config=quant_config,
     torch_dtype=torch.float16
 )
+
 llm_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer)
 
 def create_prompt(note):
@@ -41,8 +50,8 @@ Output as JSON with keys: condition_occurrence, observation, drug_exposure, pers
 def run_model_on_note(note_text):
     prompt = create_prompt(note_text)
     response = llm_pipeline(prompt, max_new_tokens=512, temperature=0.1)
+    print(f"DEBUG LLM response: {response}")
     try:
-        # Optional: parse the JSON from generated text
         generated = response[0]["generated_text"].split("Output:")[-1].strip()
         return json.loads(generated)
     except Exception as e:
