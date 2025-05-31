@@ -1,4 +1,4 @@
-# generate_synthia_test_set.py
+# generate_synthia_test_set.py - read synthea generated CSV files and output .txt file notes
 # Copyright (C) 2025 J. Keith Lawson
 #
 # This program is free software; you can redistribute it and/or modify
@@ -42,7 +42,7 @@ def load_tables():
 
 def generate_synthetic_note(pid, conditions, meds, patients):
     row = patients[patients["Id"] == pid].iloc[0]
-    gender = row["Gender"]
+    gender = row["GENDER"]
     birth_year = int(row["BIRTHDATE"].split("-")[0])
     age = 2025 - birth_year
 
@@ -65,7 +65,7 @@ def generate_synthetic_note(pid, conditions, meds, patients):
     return note, ground_truth
 
 
-def generate_notes(n=10):
+def generate_notes(n=100):
     conditions, meds, patients = load_tables()
     selected_patients = patients.sample(n)
 
@@ -87,4 +87,4 @@ def generate_notes(n=10):
 
 
 if __name__ == "__main__":
-    generate_notes(n=10)
+    generate_notes(n=100)

@@ -1,4 +1,4 @@
-# preprocess.py
+# preprocess.py - read random clinical notes from text files and save json
 # Copyright (C) 2025 J. Keith Lawson
 #
 # This program is free software; you can redistribute it and/or modify
