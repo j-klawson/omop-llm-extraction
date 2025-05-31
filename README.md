@@ -49,6 +49,14 @@ python src/load_to_omop.py
 ```
 
 ## Data Format
+
+### Generate a Synthea Test Set 
+
+```
+./scripts/setup_synthia.sh
+python src/generate_synthia_test_set.py
+```
+
 ### Input (raw notes)
 Plain `.txt` files under `data/raw_notes/`
 
@@ -72,6 +80,9 @@ Plain `.txt` files under `data/raw_notes/`
 - Replace placeholders in SQL logic with real insert templates
 
 ## License
-MIT
+
+This project is licensed under the GNU General Public License version 2 (GPLv2).  
+See the [COPYING](./COPYING) file for details.
+
 
 ---
